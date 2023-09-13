@@ -21,7 +21,6 @@ function Login() {
   return (
     <div className='w-[45rem]' >
       <form className='container p-6 flex flex-col bg-slate-100  items-center' onSubmit={handlesubmit} >
-        <h1>Log in</h1>
         <label>Email</label>
         <input type="text" name="email" placeholder='Enter your email address' onChange={(e) => { setemail(e.target.value) }} className=' w-[30rem]   m-2' value={email} />
         <label>Password</label>
