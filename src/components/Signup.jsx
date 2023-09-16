@@ -1,8 +1,11 @@
 import React, { useState } from 'react'
 import { useFirebase } from "../context/Firebase";
 import { FaGoogle } from "react-icons/fa";
+import { ToastContainer, toast } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
 
 function Signup() {
+  const notify = () => toast("Wow so easy!");
   const [email, setemail] = useState("")
   const [password, setpass] = useState("")
   const Firebase = useFirebase()
@@ -10,10 +13,9 @@ function Signup() {
   const handlesubmit = async (e) => {
     e.preventDefault();
     const res = await Firebase.SignupWithEmail(email, password)
-    console.log(res);
   }
   const googlesignup = () => {
-    Firebase.signinwithgoogle().then()
+    Firebase.signinwithgoogle() 
   }
   return (
     <div >
@@ -26,6 +28,7 @@ function Signup() {
         <h1>or</h1>
         <button onClick={googlesignup} className=' p-2 rounded-md bg-red-500 flex justify-center items-center gap-1 font-semibold '> <FaGoogle/> Signup with google</button>
       </form>
+        <ToastContainer/>
     </div>
   )
 }

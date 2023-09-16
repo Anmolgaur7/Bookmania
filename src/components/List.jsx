@@ -10,8 +10,7 @@ function List()
     const firebase=useFirebase();
      const handlesubmit= async(e)=>{
       e.preventDefault();
-     const res= await firebase.addnewlisting(name,isbn,price,coverpic);
-     console.log(res);
+      await firebase.addnewlisting(name,isbn,price,coverpic);
      }
   return (
     <div>
