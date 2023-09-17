@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { initializeApp } from "firebase/app";
-import { getAuth, createUserWithEmailAndPassword,signOut, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, onAuthStateChanged } from "firebase/auth";
-import { addDoc, collection, getFirestore, getDocs,getDoc,doc } from "firebase/firestore";
+import { getAuth, createUserWithEmailAndPassword, signOut, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, onAuthStateChanged } from "firebase/auth";
+import { addDoc, collection, getFirestore, getDocs, getDoc, doc, query, where } from "firebase/firestore";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 const FirebaseContext = createContext(null);
 const firebaseConfig = {
@@ -31,21 +31,21 @@ export const FirebaseProvider = (props) => {
         })
     }, [])
 
-    const signout=()=>{
+    const signout = () => {
         signOut(firebaseauth)
     }
-   const getbooks = () => {
-         return getDocs(collection(firestore, 'books'))
+    const getbooks = () => {
+        return getDocs(collection(firestore, 'books'))
     }
-    const bookbyid= async(id)=>{
-        const doc1=doc(firestore,'books',id)
-        const result=await getDoc(doc1);
+    const bookbyid = async (id) => {
+        const doc1 = doc(firestore, 'books', id)
+        const result = await getDoc(doc1);
         return result;
     }
     const getimageurl = (path) => {
         return getDownloadURL(ref(storage, path))
- 
-     }
+
+    }
     const addnewlisting = async (name, isbn, price, cover) => {
         const imageurl = ref(storage, `uploads/images/${Date.now()}-${cover.name}`)
         const uploadurl = await uploadBytes(imageurl, cover)
@@ -59,6 +59,23 @@ export const FirebaseProvider = (props) => {
             displayname: user.displayName
         })
     }
+    const placeorder = async (bookid, qty) => {
+        const ref = collection(firestore, "books", `${bookid}`, "orders")
+        const res = await addDoc(ref, {
+            userID: user.uid,
+            userEmail: user.email,
+            displayname: user.displayName,
+            quantity: Number(qty)
+        });
+        return res
+    }
+    console.log(user);
+    const fetchmyorders = async () => {
+        const collections = collection(firestore, "books")
+        const q = query(collections, where("userID", "==", user.uid))
+        const result = await getDocs(q)
+        console.log(result); ;
+    }
     const isloggedin = user ? true : false;
     const signinwithgoogle = () => {
         signInWithPopup(firebaseauth, google)
@@ -70,7 +87,7 @@ export const FirebaseProvider = (props) => {
         signInWithEmailAndPassword(firebaseauth, email, password)
     }
 
-    return <FirebaseContext.Provider value={{ SignupWithEmail, SigninWithEmail, signinwithgoogle, addnewlisting, signout,bookbyid,firebaseauth, isloggedin, getbooks,getimageurl }}>
+    return <FirebaseContext.Provider value={{ SignupWithEmail, fetchmyorders, SigninWithEmail, placeorder, signinwithgoogle, addnewlisting, signout, bookbyid, firebaseauth, isloggedin, getbooks, getimageurl }}>
         {props.children}
     </FirebaseContext.Provider>
 

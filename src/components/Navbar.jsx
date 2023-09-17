@@ -20,6 +20,9 @@ function Navbar() {
           <li>
             <a href="/login">Login</a>
           </li>
+          <li>
+            <a href="/userorders">Orders</a>
+          </li>
           <li><button onClick={signout}> Sign out</button></li>
         </ul>
       </nav>

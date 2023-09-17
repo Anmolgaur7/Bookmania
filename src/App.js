@@ -5,6 +5,7 @@ import Navbar from "../src/components/Navbar";
 import Home from "../src/components/home";
 import List from "./components/List";
 import Bookdetail from "./components/bookdetailpage";
+import Orders from "./components/Userorders";
 import Login from "../src/components/login";
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
       <Route path='/' element={<Home/>}/>
       <Route path='/book/list' element={<List/>}/>
       <Route path='/book/:bookid' element={<Bookdetail/>}/>
+      <Route path='/userorders' element={<Orders/>}/>
       <Route path='/signup' element={<Signup/>}/>
       <Route path='/login' element={<Login/>}/>
     </Routes>

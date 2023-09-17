@@ -7,7 +7,6 @@ function Login() {
   const [password, setpass] = useState("")
   const Firebase = useFirebase()
   const navigate = useNavigate();
-  console.log(Firebase);
   useEffect(() => {
     if (Firebase.isloggedin) {
      navigate("/")
@@ -19,8 +18,8 @@ function Login() {
     console.log(res);
   }
   return (
-    <div className='w-[45rem]' >
-      <form className='container p-6 flex flex-col bg-slate-100  items-center' onSubmit={handlesubmit} >
+    <div className='w-screen h-screen' >
+      <form className='container p-6 flex flex-col bg-slate-100  h-screen justify-center  items-center' onSubmit={handlesubmit} >
         <label>Email</label>
         <input type="text" name="email" placeholder='Enter your email address' onChange={(e) => { setemail(e.target.value) }} className=' w-[30rem]   m-2' value={email} />
         <label>Password</label>
