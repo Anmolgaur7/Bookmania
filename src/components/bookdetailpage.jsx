@@ -4,15 +4,15 @@ import { useFirebase } from '../context/Firebase';
 
 
 function Bookdetailpage() {
-    const[bookdata,setdata]=useState([])
+    const[bookdata,setdata]=useState(null)
     const firebase=useFirebase()
     const params=useParams()
     useEffect(()=>{
-    firebase.bookbyid(params.bookid).then(value=>{setdata(value)})
+    firebase.bookbyid(params.bookid).then((value)=>setdata(value.data()))
     })
   return (
     <div>
-      {bookdata.name}
+      {}
     </div>
   )
 }

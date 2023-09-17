@@ -17,7 +17,6 @@ const firebaseauth = getAuth(app)
 const firestore = getFirestore(app)
 const google = new GoogleAuthProvider();
 const storage = getStorage(app)
-
 export const useFirebase = () => useContext(FirebaseContext)
 export const FirebaseProvider = (props) => {
     const [user, setuser] = useState(null)
@@ -39,8 +38,8 @@ export const FirebaseProvider = (props) => {
          return getDocs(collection(firestore, 'books'))
     }
     const bookbyid= async(id)=>{
-        const doc1=doc(firestore,'books',`${id}`)
-        const result=await getDoc(doc1)
+        const doc1=doc(firestore,'books',id)
+        const result=await getDoc(doc1);
         return result;
     }
     const getimageurl = (path) => {
@@ -61,8 +60,6 @@ export const FirebaseProvider = (props) => {
         })
     }
     const isloggedin = user ? true : false;
-    console.log(isloggedin);
-
     const signinwithgoogle = () => {
         signInWithPopup(firebaseauth, google)
     }
@@ -72,7 +69,8 @@ export const FirebaseProvider = (props) => {
     const SigninWithEmail = (email, password) => {
         signInWithEmailAndPassword(firebaseauth, email, password)
     }
-    return <FirebaseContext.Provider value={{ SignupWithEmail, SigninWithEmail, signinwithgoogle, addnewlisting, signout,bookbyid, isloggedin, getbooks,getimageurl }}>
+
+    return <FirebaseContext.Provider value={{ SignupWithEmail, SigninWithEmail, signinwithgoogle, addnewlisting, signout,bookbyid,firebaseauth, isloggedin, getbooks,getimageurl }}>
         {props.children}
     </FirebaseContext.Provider>
 

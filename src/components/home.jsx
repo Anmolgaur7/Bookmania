@@ -10,12 +10,20 @@ function Home() {
      setbook(books.docs)
     })
     },[firebase,books])
+
+    if(firebase.isloggedin)
+    {
+      return(
+      <div className='flex flex-wrap'>
+      {
+         books.map(book=><Bookcard  key={book.id} id={book.id} {...book.data()}/>)
+      }   
+     </div>
+      )
+    }
   return (
-    <div className='flex flex-wrap'>
-     {
-        books.map(book=><Bookcard  key={book.id} id={book.id} {...book.data()}/>)
-     }   
-    </div>
+
+    <h1>please login</h1>
   )
 }
 
