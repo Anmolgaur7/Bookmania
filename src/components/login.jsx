@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useFirebase } from "../context/Firebase";
 import { useNavigate } from "react-router-dom";
+import { FaGoogle } from "react-icons/fa";
 
 function Login() {
   const [email, setemail] = useState("")
@@ -12,6 +13,11 @@ function Login() {
      navigate("/")
     }
   }, [Firebase,navigate])
+
+  const googlesignup = () => {
+    Firebase.signinwithgoogle() 
+  }
+  
   const handlesubmit = async (e) => {
     e.preventDefault();
     const res = await Firebase.SigninWithEmail(email, password)
@@ -25,7 +31,10 @@ function Login() {
         <label>Password</label>
         <input type="password" name="password" placeholder='Enter your Password' onChange={(e) => { setpass(e.target.value) }} className=' w-[30rem] m-2' value={password} />
         <button className='text-md bg-yellow-400 font-semibold p-1 rounded-lg' >Log in</button>
+        <h1>or</h1>
+        <button onClick={googlesignup} className=' p-2 rounded-md bg-red-500 flex justify-center items-center gap-1 font-semibold '> <FaGoogle/> Login with google</button>
       </form>
+      
     </div>
   )
 }

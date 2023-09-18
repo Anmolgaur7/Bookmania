@@ -14,9 +14,9 @@ function Home() {
     if(firebase.isloggedin)
     {
       return(
-      <div className='flex flex-wrap'>
+      <div className='flex flex-wrap justify-center items-center '>
       {
-         books.map(book=><Bookcard  key={book.id} id={book.id} {...book.data()}/>)
+         books.map(book=><Bookcard link={`book/${book.id}`} key={book.id} id={book.id} {...book.data()}/>)
       }   
      </div>
       )
