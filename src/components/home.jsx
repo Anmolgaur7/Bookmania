@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { useFirebase } from "../context/Firebase";
 import Bookcard from "../components/BookCard";
 import { JackInTheBox, Slide, Zoom } from "react-awesome-reveal";
-import Home2 from "../images/home2.jpeg";
 import Books from "../images/books.jpg";
 function Home() {
   const [books, setbook] = useState([])
