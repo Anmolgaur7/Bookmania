@@ -22,6 +22,7 @@ function Signup() {
         <input type="email" name="email" placeholder='Enter your email address' onChange={(e) => { setemail(e.target.value) }} className=' w-[30rem]   m-2' value={email} />
         <label className='font-semibold'>Password</label>
         <input type="password" name="password" placeholder='Enter your Password' onChange={(e) => { setpass(e.target.value) }} className=' w-[30rem] m-2' value={password} />
+  
         <button className='text-md bg-yellow-400 font-semibold p-1 rounded-lg' > Sign up</button>
       </form>
     </div>

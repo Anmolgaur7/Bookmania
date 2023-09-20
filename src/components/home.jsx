@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useFirebase } from "../context/Firebase";
 import Bookcard from "../components/BookCard";
-import { JackInTheBox, Slide, Zoom } from "react-awesome-reveal";
+import { JackInTheBox, Slide, Zoom, Fade } from "react-awesome-reveal";
 import Books from "../images/books.jpg";
 function Home() {
   const [books, setbook] = useState([])
@@ -10,6 +10,7 @@ function Home() {
     firebase.getbooks().then((books) => {
       setbook(books.docs)
     })
+    console.log(books);
   }, [firebase, books])
 
   if (firebase.isloggedin) {
@@ -47,7 +48,9 @@ function Home() {
             At BookMania, we understand the magic of a well-worn book and the joy of passing it on to a fellow bookworm. Our platform is dedicated to connecting passionate readers like you, where you can list your gently used books for sale and discover hidden literary gems waiting to be explored.
           </h1>
         </Slide>
-         <img src={Books} className='w-[40vw] h-[55vh]' alt="Some error occured" />
+        <Fade triggerOnce={true}>
+        <img src={Books} className='w-[40vw] h-[55vh]' alt="Some error occured" />
+        </Fade>
       </div>
     </>
   )

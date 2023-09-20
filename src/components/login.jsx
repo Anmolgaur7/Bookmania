@@ -2,14 +2,17 @@ import React, { useState, useEffect } from 'react'
 import { useFirebase } from "../context/Firebase";
 import { useNavigate } from "react-router-dom";
 import { FaGoogle } from "react-icons/fa";
+import { ToastContainer, toast } from 'react-toastify';
+
 
 function Login() {
+  
   const [email, setemail] = useState("")
   const [password, setpass] = useState("")
   const Firebase = useFirebase()
   const navigate = useNavigate();
   useEffect(() => {
-    if (Firebase.isloggedin) {
+    if (Firebase.isloggedin) {ad
      navigate("/")
     }
   }, [Firebase,navigate])
@@ -30,9 +33,11 @@ function Login() {
         <input type="text" name="email" placeholder='Enter your email address' onChange={(e) => { setemail(e.target.value) }} className=' w-[30rem]   m-2' value={email} />
         <label>Password</label>
         <input type="password" name="password" placeholder='Enter your Password' onChange={(e) => { setpass(e.target.value) }} className=' w-[30rem] m-2' value={password} />
+      
         <button className='text-md bg-yellow-400 font-semibold p-1 rounded-lg' >Log in</button>
         <h1>or</h1>
         <button onClick={googlesignup} className=' p-2 rounded-md bg-red-500 flex justify-center items-center gap-1 font-semibold '> <FaGoogle/> Login with google</button>
+        <ToastContainer/>
       </form>
       
     </div>

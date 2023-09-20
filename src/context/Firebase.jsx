@@ -1,21 +1,21 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { initializeApp } from "firebase/app";
 import { getAuth, createUserWithEmailAndPassword, signOut, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, onAuthStateChanged } from "firebase/auth";
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { addDoc, collection, getFirestore, getDocs, getDoc, doc, query, where } from "firebase/firestore";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 const FirebaseContext = createContext(null);
 
 const firebaseConfig = {
-    apiKey: "AIzaSyBE3Eta3BaRUBDyMtv_YkVvuTAJ5m8Wctw",
-    authDomain: "bookmania-15201.firebaseapp.com",
-    projectId: "bookmania-15201",
-    storageBucket: "bookmania-15201.appspot.com",
-    messagingSenderId: "904717084412",
-    appId: "1:904717084412:web:cde51dabffde492bd2d979"
+    apiKey: "AIzaSyBB10X6ubUHCf8QYqsrhMwD3YFAixap8UQ",
+    authDomain: "bookmania1-7443b.firebaseapp.com",
+    projectId: "bookmania1-7443b",
+    storageBucket: "bookmania1-7443b.appspot.com",
+    messagingSenderId: "953420258762",
+    appId: "1:953420258762:web:7d8ca30a11e682749cc333"
 };
-const notify = () => toast("User Already Exists");
+
 const app = initializeApp(firebaseConfig);
 const firebaseauth = getAuth(app)
 const firestore = getFirestore(app)
@@ -80,6 +80,7 @@ export const FirebaseProvider = (props) => {
         const result = await getDocs(q)
         return result;
     }
+    const notify = () => toast("Wow so easy!");
     const isloggedin = user ? true : false;
     const signinwithgoogle = () => {
         signInWithPopup(firebaseauth, google).catch((error) => {
@@ -90,9 +91,11 @@ export const FirebaseProvider = (props) => {
         createUserWithEmailAndPassword(firebaseauth, email, password).catch((error) => {
             switch (error.code) {
                 case 'auth/email-already-in-use':
+
                     alert('User already exits.');
                     break;
                 case 'auth/weak-password':
+                    notify()
                     alert("Weak password")
                     break;
                 default:
@@ -117,7 +120,7 @@ export const FirebaseProvider = (props) => {
         });
     }
     console.log(user);
-    return <FirebaseContext.Provider value={{ SignupWithEmail, getorders, fetchmyorders, SigninWithEmail, placeorder, signinwithgoogle, addnewlisting, signout, bookbyid, user, isloggedin, getbooks, getimageurl }}>
+    return <FirebaseContext.Provider value={{ SignupWithEmail, getorders, fetchmyorders, SigninWithEmail, placeorder, signinwithgoogle, addnewlisting, signout, bookbyid,user, isloggedin, getbooks, getimageurl }}>
         {props.children}
     </FirebaseContext.Provider>
 
