@@ -1,20 +1,38 @@
-import React,{useState} from 'react'
+import React, { useState } from 'react'
 import { useFirebase } from "../context/Firebase";
+import { ToastContainer, toast } from "react-toastify";
 
-function List() 
-{
-    const [name,setname]=useState("")
-    const [isbn,setisbn]=useState("")
-    const [price,setprice]=useState("")
-    const [coverpic,setcoverpic]=useState(null)
-    const firebase=useFirebase();
-     const handlesubmit= async(e)=>{
-      e.preventDefault();
-      await firebase.addnewlisting(name,isbn,price,coverpic);
-     }
+function List() {
+  const [name, setname] = useState("")
+  const [isbn, setisbn] = useState("")
+  const [price, setprice] = useState("")
+  const [coverpic, setcoverpic] = useState(null)
+  const firebase = useFirebase();
+  const handlesubmit = async (e) =>{
+    e.preventDefault();
+    await firebase.addnewlisting(name, isbn, price, coverpic).then((res) => toast.success('Book added succesfully', {
+      position: "bottom-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    })).catch((error) => toast.error(`${error.code}`, {
+      position: "bottom-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    }));
+  }
   return (
     <div>
-        <form className='container p-10 flex h-screen flex-col bg-slate-100 justify-center items-center' onSubmit={handlesubmit} >
+      <form className='container p-10 flex h-screen flex-col bg-slate-100 justify-center items-center' onSubmit={handlesubmit} >
         <label className='font-semibold'>Name</label>
         <input type="text" name="name" placeholder='Enter name of book' onChange={(e) => { setname(e.target.value) }} className=' w-[30rem] h-[2rem] p-2  m-2' value={name} />
         <label className='font-semibold'>ISBN</label>
@@ -25,8 +43,9 @@ function List()
         <input type="file" name="file" placeholder='enter coverpic' onChange={(e) => { setcoverpic(e.target.files[0]) }} className=' w-[30rem] h-[2rem] m-2' />
 
         <button className='text-md bg-yellow-400 font-semibold p-1 rounded-lg' >Add Book</button>
+
       </form>
-      
+      <ToastContainer />
     </div>
   )
 }

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from "react-router-dom";
 import { useFirebase } from '../context/Firebase';
-
+import { ToastContainer,toast } from "react-toastify";
 
 function Bookdetailpage() {
   const [bookdata, setdata] = useState(null)
@@ -12,9 +12,25 @@ function Bookdetailpage() {
   const params = useParams()
   const id= params.bookid;
   const place=async()=>{
-   const res= await firebase.placeorder(id,qty)
-   console.log("Order Placed",res);  
-  }
+   await firebase.placeorder(id,qty).then((res) => toast.success('Order placed Successfuly'+`${res.id}`, {
+    position: "bottom-center",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "colored",
+  })).catch((error) => toast.error(`${error.code}`, {
+    position: "bottom-center",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "colored",
+  })) }
 
   useEffect(() => {
     firebase.bookbyid(id).then((value) => setdata(value.data()))
@@ -39,6 +55,7 @@ function Bookdetailpage() {
       <input type="number" name="qty" onChange={(e) => { setqty(e.target.value) }} className='bg-slate-300'/>
 
       <button className='bg-blue-400' onClick={place}>Place Order</button>
+      <ToastContainer/>
     </div>
   )
 }

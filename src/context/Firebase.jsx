@@ -1,7 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { initializeApp } from "firebase/app";
 import { getAuth, createUserWithEmailAndPassword, signOut, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, onAuthStateChanged } from "firebase/auth";
-import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { addDoc, collection, getFirestore, getDocs, getDoc, doc, query, where } from "firebase/firestore";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
@@ -80,7 +79,6 @@ export const FirebaseProvider = (props) => {
         const result = await getDocs(q)
         return result;
     }
-    const notify = () => toast("Wow so easy!");
     const isloggedin = user ? true : false;
     const signinwithgoogle = () => {
         signInWithPopup(firebaseauth, google).catch((error) => {
@@ -88,36 +86,12 @@ export const FirebaseProvider = (props) => {
         })
     }
     const SignupWithEmail = (email, password) => {
-        createUserWithEmailAndPassword(firebaseauth, email, password).catch((error) => {
-            switch (error.code) {
-                case 'auth/email-already-in-use':
-
-                    alert('User already exits.');
-                    break;
-                case 'auth/weak-password':
-                    notify()
-                    alert("Weak password")
-                    break;
-                default:
-                    console.error('An error occurred:', error);
-                    break;
-            }
-        });
+      const res=   createUserWithEmailAndPassword(firebaseauth, email, password);
+      return res
     }
     const SigninWithEmail = (email, password) => {
-        signInWithEmailAndPassword(firebaseauth, email, password).catch((error) => {
-            switch (error.code) {
-                case 'auth/wrong-password':
-                    alert('Wrong Password');
-                    break;
-                case 'auth/user-not-found':
-                    alert("Please register First")
-                    break;
-                default:
-                    console.error('An error occurred:', error);
-                    break;
-            }
-        });
+     const res =  signInWithEmailAndPassword(firebaseauth, email, password)
+     return res
     }
     console.log(user);
     return <FirebaseContext.Provider value={{ SignupWithEmail, getorders, fetchmyorders, SigninWithEmail, placeorder, signinwithgoogle, addnewlisting, signout, bookbyid,user, isloggedin, getbooks, getimageurl }}>

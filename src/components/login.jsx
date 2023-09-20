@@ -6,13 +6,12 @@ import { ToastContainer, toast } from 'react-toastify';
 
 
 function Login() {
-  
   const [email, setemail] = useState("")
   const [password, setpass] = useState("")
   const Firebase = useFirebase()
   const navigate = useNavigate();
   useEffect(() => {
-    if (Firebase.isloggedin) {ad
+    if (Firebase.isloggedin) {
      navigate("/")
     }
   }, [Firebase,navigate])
@@ -23,8 +22,18 @@ function Login() {
   
   const handlesubmit = async (e) => {
     e.preventDefault();
-    const res = await Firebase.SigninWithEmail(email, password)
-    console.log(res);
+    await Firebase.SigninWithEmail(email, password).catch((error) => {
+      toast.error(`${error.code}`,{
+        position: "bottom-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      })
+  });
   }
   return (
     <div className='w-screen h-screen' >
