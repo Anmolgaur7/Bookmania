@@ -30,6 +30,13 @@ function List() {
       theme: "colored",
     }));
   }
+  if (!firebase.isloggedin) {
+    return(
+      <div>
+        <h1>Please Login </h1>
+      </div>
+    )
+  }
   return (
     <div>
       <form className='container p-10 flex h-screen flex-col bg-slate-100 justify-center items-center' onSubmit={handlesubmit} >

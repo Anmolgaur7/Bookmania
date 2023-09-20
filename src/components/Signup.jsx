@@ -14,14 +14,14 @@ function Signup() {
     e.preventDefault();
     await Firebase.SignupWithEmail(email, password).catch((error) => {
       toast.error(`${error.code}`, {
-        position: "top-center",
+        position: "bottom-center",
         autoClose: 5000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
-        theme: "dark",
+        theme: "colored",
       });
     })
 
@@ -37,7 +37,7 @@ function Signup() {
 
   return (
     <div >
-      <form className='container p-10 flex flex-col h-screen bg-slate-100 justify-center items-center' onSubmit={handlesubmit} >
+      <form className='container p-10 flex flex-col h-screen w-screen justify-center items-center' onSubmit={handlesubmit} >
         <label className='font-semibold'>Email</label>
         <input type="email" name="email" placeholder='Enter your email address' onChange={(e) => { setemail(e.target.value) }} className=' w-[30rem]   m-2' value={email} />
         <label className='font-semibold'>Password</label>

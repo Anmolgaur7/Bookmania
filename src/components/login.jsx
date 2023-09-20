@@ -22,7 +22,7 @@ function Login() {
   
   const handlesubmit = async (e) => {
     e.preventDefault();
-    await Firebase.SigninWithEmail(email, password).catch((error) => {
+    await Firebase.SigninWithEmail(email, password).catch((error) =>{
       toast.error(`${error.code}`,{
         position: "bottom-center",
         autoClose: 5000,
