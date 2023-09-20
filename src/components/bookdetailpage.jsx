@@ -12,7 +12,7 @@ function Bookdetailpage() {
   const params = useParams()
   const id= params.bookid;
   const place=async()=>{
-   await firebase.placeorder(id,qty).then((res) => toast.success('Order placed Successfuly'+`${res.id}`, {
+   await firebase.placeorder(id,qty).then((res) => toast.success('Order placed Successfuly '+` Id:${res.id}`, {
     position: "bottom-center",
     autoClose: 5000,
     hideProgressBar: false,
