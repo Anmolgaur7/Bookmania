@@ -12,7 +12,7 @@ function Bookdetailpage() {
   const params = useParams()
   const id = params.bookid;
   const place = async () => {
-    await firebase.placeorder(id, qty).then((res) => toast.success('Order placed Successfully ' + ` Id:${res.id}`, {
+    await firebase.placeorder(id, qty).then((res) => toast.success('Order placed Successfully '+` Id:${res.id}`, {
       position: "bottom-center",
       autoClose: 5000,
       hideProgressBar: false,
@@ -45,10 +45,11 @@ function Bookdetailpage() {
   if (bookdata == null) return <h1>loading</h1>
   return (
     <div>
-      <img src={url} className='w-[20rem]' />
+      <img src={url} className='w-[20rem] 'alt='Some error' />
       <h1 className='font-semibold text-2xl'>Details</h1>
       <h1>{bookdata.name}</h1>
       <h1>₨{bookdata.price}</h1>
+      <p className="mb-3 font-medium text-lg  text-gray-700 dark:text-gray-400">This book has  a title {bookdata.name} and it is sold by {bookdata.displayName}</p>
       <h1 className='font-semibold text-2xl'>Owner Details </h1>
       <h1>{bookdata.displayname}</h1>
       <h1>{bookdata.userEmail}</h1>

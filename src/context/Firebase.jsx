@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { initializeApp } from "firebase/app";
-import { getAuth, createUserWithEmailAndPassword, signOut, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, onAuthStateChanged } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, signOut, signInWithEmailAndPassword, GoogleAuthProvider, FacebookAuthProvider, signInWithPopup, onAuthStateChanged } from "firebase/auth";
 import 'react-toastify/dist/ReactToastify.css';
 import { addDoc, collection, getFirestore, getDocs, getDoc, doc, query, where } from "firebase/firestore";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
@@ -19,6 +19,7 @@ const app = initializeApp(firebaseConfig);
 const firebaseauth = getAuth(app)
 const firestore = getFirestore(app)
 const google = new GoogleAuthProvider();
+const facebook = new FacebookAuthProvider()
 const storage = getStorage(app)
 export const useFirebase = () => useContext(FirebaseContext)
 export const FirebaseProvider = (props) => {
@@ -81,20 +82,24 @@ export const FirebaseProvider = (props) => {
     }
     const isloggedin = user ? true : false;
     const signinwithgoogle = () => {
-        signInWithPopup(firebaseauth, google).catch((error) => {
-            console.error(error.code);
-        })
-    }
-    const SignupWithEmail = (email, password) => {
-      const res=   createUserWithEmailAndPassword(firebaseauth, email, password);
+      const res=signInWithPopup(firebaseauth, google)
       return res
     }
+    const signinwithfb = () => {
+       const res=  signInWithPopup(firebaseauth, facebook)
+       return res
+    }
+
+    const SignupWithEmail = (email, password) => {
+        const res = createUserWithEmailAndPassword(firebaseauth, email, password);
+        return res
+    }
     const SigninWithEmail = (email, password) => {
-     const res =  signInWithEmailAndPassword(firebaseauth, email, password)
-     return res
+        const res = signInWithEmailAndPassword(firebaseauth, email, password)
+        return res
     }
     console.log(user);
-    return <FirebaseContext.Provider value={{ SignupWithEmail, getorders, fetchmyorders, SigninWithEmail, placeorder, signinwithgoogle, addnewlisting, signout, bookbyid,user, isloggedin, getbooks, getimageurl }}>
+    return <FirebaseContext.Provider value={{ SignupWithEmail, getorders, fetchmyorders, SigninWithEmail, placeorder, signinwithgoogle, addnewlisting, signout, signinwithfb, bookbyid, user, isloggedin, getbooks, getimageurl }}>
         {props.children}
     </FirebaseContext.Provider>
 

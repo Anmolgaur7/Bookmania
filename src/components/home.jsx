@@ -19,7 +19,7 @@ function Home() {
 
   if (firebase.isloggedin) {
     return (
-      <div className='flex flex-wrap justify-center items-center '>
+      <div className='flex flex-wrap p-12 justify-center items-center '>
         {
           books.map(book => <Bookcard link={`book/${book.id}`} key={book.id} id={book.id} {...book.data()} />)
         }
@@ -36,7 +36,7 @@ function Home() {
   }
   return (
     <>
-      <div className='w-screen h-screen bg-home bg-cover flex flex-col justify-center items-center mb'>
+      <div className='w-screen h-screen bg-home bg-cover flex flex-col justify-center items-center '>
         <h1 className='text-7xl bg-slate-50 opacity-75 w-[50rem] font-bold mb-24 p-4'>Discover the book you like the most.</h1>
         <Zoom triggerOnce={true}>
           <div className='flex gap-14 items-center'>
@@ -55,7 +55,7 @@ function Home() {
       </div>
       <div className='flex justify-center items-center'>
         <Slide triggerOnce={true}>
-          <h1 className='font-mono m-14 text-xl font-semibold w-[45vw] h-[45vh] p-3 bg-amber-100 '> Are you a book enthusiast looking for a place to share the stories you've already devoured and make room for new ones? Or perhaps you're an avid reader on the hunt for affordable, well-loved books to add to your collection? Look no further – BookMania is here to bring book lovers together in a literary paradise!
+          <h1 className='font-mono m-14 text-xl  font-semibold w-[45vw] max-h-fit p-3 bg-amber-100 '> Are you a book enthusiast looking for a place to share the stories you've already devoured and make room for new ones? Or perhaps you're an avid reader on the hunt for affordable, well-loved books to add to your collection? Look no further – BookMania is here to bring book lovers together in a literary paradise!
             <br />
             At BookMania, we understand the magic of a well-worn book and the joy of passing it on to a fellow bookworm. Our platform is dedicated to connecting passionate readers like you, where you can list your gently used books for sale and discover hidden literary gems waiting to be explored.
           </h1>
