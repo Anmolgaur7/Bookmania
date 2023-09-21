@@ -26,14 +26,6 @@ function Home() {
       </div>
     )
   }
-  if (load) {
-    return(
-      <div>
-        <Spinner/>
-      </div>
-    )
-    
-  }
   return (
     <>
       <div className='w-screen h-screen bg-home bg-cover flex flex-col justify-center items-center '>
