@@ -2,7 +2,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { initializeApp } from "firebase/app";
 import { getAuth, createUserWithEmailAndPassword, signOut, signInWithEmailAndPassword, GoogleAuthProvider, FacebookAuthProvider, signInWithPopup, onAuthStateChanged } from "firebase/auth";
 import 'react-toastify/dist/ReactToastify.css';
-import { addDoc, collection, getFirestore, getDocs, getDoc, doc, query, where } from "firebase/firestore";
+import { addDoc, collection, getFirestore, getDocs, getDoc, doc, updateDoc,deleteDoc, query, where } from "firebase/firestore";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 const FirebaseContext = createContext(null);
 
@@ -68,7 +68,11 @@ export const FirebaseProvider = (props) => {
         });
         return res
     }
-
+    const delbook = async(id)=>{
+    const cityref=doc(firestore,'books',id)
+    const res=await deleteDoc(cityref)
+      return res
+    }
     const getorders = async (bookID) => {
         const collectionref = collection(firestore, "books", bookID, "orders")
         const res = await getDocs(collectionref)
@@ -99,7 +103,7 @@ export const FirebaseProvider = (props) => {
         return res
     }
     console.log(user);
-    return <FirebaseContext.Provider value={{ SignupWithEmail, getorders, fetchmyorders, SigninWithEmail, placeorder, signinwithgoogle, addnewlisting, signout, signinwithfb, bookbyid, user, isloggedin, getbooks, getimageurl }}>
+    return <FirebaseContext.Provider value={{ SignupWithEmail, getorders, fetchmyorders, SigninWithEmail, placeorder, signinwithgoogle, addnewlisting, signout,delbook ,signinwithfb, bookbyid, user, isloggedin, getbooks, getimageurl }}>
         {props.children}
     </FirebaseContext.Provider>
 

@@ -3,16 +3,12 @@ import { useFirebase } from "../context/Firebase";
 import Bookcard from "../components/BookCard";
 import { JackInTheBox, Slide, Zoom, Fade } from "react-awesome-reveal";
 import Books from "../images/books.jpg";
-import Spinner from "../components/spinner";
 function Home() {
   const [books, setbook] = useState([])
-  const [load, setload] = useState(false)
   const firebase = useFirebase();
   useEffect(() => {
     firebase.getbooks().then((books) => {
-      setload(true)
       setbook(books.docs)
-      setload(false)
     })
     console.log(books);
   }, [firebase, books])

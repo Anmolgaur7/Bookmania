@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { useFirebase } from "../context/Firebase";
 import { ToastContainer, toast } from "react-toastify";
+import Lfs from "../components/lfs1";
+
 
 function List() {
   const [name, setname] = useState("")
@@ -31,10 +33,8 @@ function List() {
     }));
   }
   if (!firebase.isloggedin) {
-    return(
-      <div>
-        <h1>Please Login </h1>
-      </div>
+    return (
+      <Lfs />
     )
   }
   return (
