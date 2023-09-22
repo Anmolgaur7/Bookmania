@@ -17,7 +17,7 @@ function Signup() {
         console.error(error.code)
       }
       toast.error(`${error.code}`, {
-        position: "bottom-center",
+        position: "top-center",
         autoClose: 5000,
         hideProgressBar: false,
         closeOnClick: true,
@@ -35,7 +35,7 @@ function Signup() {
         console.error(error.code)
       }
       toast.error(`${error.code}`, {
-        position: "bottom-center",
+        position: "top-center",
         autoClose: 5000,
         hideProgressBar: false,
         closeOnClick: true,
@@ -51,7 +51,7 @@ function Signup() {
     e.preventDefault();
     await Firebase.SignupWithEmail(email, password).catch((error) => {
       toast.error(`${error.code}`, {
-        position: "bottom-center",
+        position: "top-center",
         autoClose: 5000,
         hideProgressBar: false,
         closeOnClick: true,
@@ -74,19 +74,19 @@ function Signup() {
 
   return (
     <div className='flex justify-center items-center h-[70vh] mt-10' >
-      <form className='container p-10 flex flex-col bg-slate-400 h-[60vh] w-[40vw] justify-center items-center' onSubmit={handlesubmit} >
+      <form className='container p-10 flex flex-col bg-slate-400 h-[60vh] w-[80vw] justify-center items-center md:h-[60vh] w-[80vw]' onSubmit={handlesubmit} >
       <h1 className='text-3xl text-white mb-12'>Create Account</h1>
 
         <label className='font-semibold text-xl text-white'>Email</label>
-        <input type="email" name="email" placeholder='Enter your email address' onChange={(e) => { setemail(e.target.value) }} className=' w-[30rem] p-1 m-2' value={email} />
+        <input type="email" name="email" placeholder='Enter your email address' onChange={(e) => { setemail(e.target.value) }} className=' w-[18rem] p-1 m-2 md:w-[30rem]' value={email} />
         <label className='font-semibold text-xl text-white'>Password</label>
-        <input type="password" name="password" placeholder='At least 6 Characters' onChange={(e) => { setpass(e.target.value) }} className=' w-[30rem] p-1 m-2' value={password} />
+        <input type="password" name="password" placeholder='At least 6 Characters' onChange={(e) => { setpass(e.target.value) }} className='  w-[18rem] p-1 m-2 md:w-[30rem]' value={password} />
 
         <button className='text-xl bg-yellow-400 font-semibold p-1 pr-2 pl-2 rounded-lg mt-4 hover:bg-yellow-300' > Sign up</button>
         <h1 className='m-1 text-md text-white  text-center font-medium'>----------- Or ------------</h1>
         <div className='flex gap-4'>
-        <button onClick={googlesignup} className=' p-2 rounded-md bg-red-500 flex justify-center items-center gap-1 font-semibold hover:bg-red-400 '> <FaGoogle /> Signup with google</button>
-        <button onClick={facebooksignup} className=' p-2 rounded-md bg-blue-500 flex justify-center items-center gap-1 font-semibold hover:bg-blue-400 '> <FaFacebook /> Signup with Facebook</button>
+        <button onClick={googlesignup} className=' p-2 rounded-md bg-red-500 flex justify-center items-center flex-wrap gap-1 font-semibold hover:bg-red-400 '> <FaGoogle /> Signup with google</button>
+        <button onClick={facebooksignup} className=' p-2 rounded-md bg-blue-500 flex justify-center items-center gap-1 flex-wrap font-semibold hover:bg-blue-400 '> <FaFacebook /> Signup with Facebook</button>
         </div>
       </form>
       <ToastContainer />

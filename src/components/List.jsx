@@ -16,7 +16,7 @@ function List() {
     e.preventDefault();
     await firebase.addnewlisting(name, isbn, price, coverpic).then((res) => {
       toast.success('Book added succesfully', {
-        position: "bottom-center",
+        position: "top-center",
         autoClose: 5000,
         hideProgressBar: false,
         closeOnClick: true,
@@ -26,7 +26,7 @@ function List() {
         theme: "colored",
       })
     }).catch((error) => toast.error(`${error.code}`, {
-      position: "bottom-center",
+      position: "top-center",
       autoClose: 5000,
       hideProgressBar: false,
       closeOnClick: true,

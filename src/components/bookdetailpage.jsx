@@ -15,7 +15,7 @@ function Bookdetailpage() {
   const id = params.bookid;
   const place = async () => {
     await firebase.placeorder(id, qty).then((res) => toast.success('Order placed Successfully ' + ` Id:${res.id}`, {
-      position: "bottom-center",
+      position: "top-center",
       autoClose: 5000,
       hideProgressBar: false,
       closeOnClick: true,
@@ -24,7 +24,7 @@ function Bookdetailpage() {
       progress: undefined,
       theme: "colored",
     })).catch((error) => toast.error(`${error.code}`, {
-      position: "bottom-center",
+      position: "top-center",
       autoClose: 5000,
       hideProgressBar: false,
       closeOnClick: true,
@@ -37,7 +37,7 @@ function Bookdetailpage() {
   const del = () => {
     firebase.delbook(id).then((res) => {
       toast.success('Book removed Successfully', {
-        position: "bottom-center",
+        position: "top-center",
         autoClose: 5000,
         hideProgressBar: false,
         closeOnClick: true,
