@@ -61,7 +61,7 @@ function Login() {
   }
   return (
     <div className='flex justify-center items-center h-[70vh] mt-10' >
-      <form className=' container p-10 flex flex-col bg-slate-500 h-[60vh] w-[80vw] justify-center items-center md:h-[60vh] w-[40vw]' onSubmit={handlesubmit} >
+      <form className=' container p-10 flex flex-col bg-slate-500 h-[60vh] w-[40vw] justify-center items-center md:h-[60vh] w-[80vw]' onSubmit={handlesubmit} >
         <h1 className='text-3xl text-white mb-12'>Log in</h1>
         <label className='font-semibold text-xl text-white'>Email</label>
         <input type="text" name="email" placeholder='Enter your email address' onChange={(e) => { setemail(e.target.value) }} className=' w-[18rem]  p-1 m-2 md:w-[30rem]' value={email} />

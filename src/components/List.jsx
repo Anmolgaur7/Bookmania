@@ -47,13 +47,13 @@ function List() {
       <h1 className='text-3xl  m-2  font-semibold text-center font-mono  '>List your books</h1>
       <form className='container p-10 flex max-w-lg h-[60vh] flex-col bg-slate-300 justify-center items-center' onSubmit={handlesubmit} >
         <label className='font-semibold'>Name</label>
-        <input type="text" name="name" placeholder='Enter name of book' onChange={(e) => { setname(e.target.value) }} className=' w-[30rem] h-[2rem] p-2  m-2' value={name} />
+        <input type="text" name="name" placeholder='Enter name of book' onChange={(e) => { setname(e.target.value) }} className=' w-[18rem] p-1 m-2 md:w-[30rem]' value={name} />
         <label className='font-semibold'>ISBN</label>
-        <input type="text" name="isbn" placeholder='Enter ISBN number' onChange={(e) => { setisbn(e.target.value) }} className=' w-[30rem] h-[2rem] p-2 m-2' value={isbn} />
+        <input type="text" name="isbn" placeholder='Enter ISBN number' onChange={(e) => { setisbn(e.target.value) }} className=' w-[18rem] p-1 m-2 md:w-[30rem]' value={isbn} />
         <label className='font-semibold'>Price</label>
-        <input type="text" name="isbn" placeholder='Enter Price' onChange={(e) => { setprice(e.target.value) }} className=' w-[30rem] h-[2rem] p-2 m-2' value={price} />
+        <input type="text" name="isbn" placeholder='Enter Price' onChange={(e) => { setprice(e.target.value) }} className=' w-[18rem] p-1 m-2 md:w-[30rem]' value={price} />
         <label className='font-semibold'>Cover Pic</label>
-        <input type="file" name="file" placeholder='enter coverpic' onChange={(e) => { setcoverpic(e.target.files[0]) }} className=' w-[30rem] h-[2rem] m-2' />
+        <input type="file" name="file" placeholder='enter coverpic' onChange={(e) => { setcoverpic(e.target.files[0]) }} className=' w-[18rem] p-1 m-2 md:w-[30rem]' />
 
         <button className='text-md bg-yellow-400 font-semibold p-1 rounded-lg' >Add Book</button>
 
