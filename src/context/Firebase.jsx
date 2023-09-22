@@ -7,13 +7,14 @@ import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 const FirebaseContext = createContext(null);
 
 const firebaseConfig = {
-    apiKey: "AIzaSyBB10X6ubUHCf8QYqsrhMwD3YFAixap8UQ",
-    authDomain: "bookmania1-7443b.firebaseapp.com",
-    projectId: "bookmania1-7443b",
-    storageBucket: "bookmania1-7443b.appspot.com",
-    messagingSenderId: "953420258762",
-    appId: "1:953420258762:web:7d8ca30a11e682749cc333"
-};
+    apiKey: "AIzaSyD8P9YXnnRufPOkospj38ULUvWHnlCEc_g",
+    authDomain: "bookmania1-9fe62.firebaseapp.com",
+    projectId: "bookmania1-9fe62",
+    storageBucket: "bookmania1-9fe62.appspot.com",
+    messagingSenderId: "944184768924",
+    appId: "1:944184768924:web:6a5aba88c6fa9a17523059"
+  };
+  
 
 const app = initializeApp(firebaseConfig);
 const firebaseauth = getAuth(app)
