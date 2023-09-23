@@ -76,10 +76,14 @@ function Bookdetailpage() {
         <h1 className='"mb-3 font-medium text-md text-gray-700 dark:text-gray-400'>{bookdata.userEmail}</h1>
         <input type="number" name="qty" placeholder='Quantity' onChange={(e) => { setqty(e.target.value) }} className='bg-white p-1 mt-1' />
         <div className='flex flex-col justify-center items-center m-4'>
-        {firebase.user.uid === bookdata.userID ? <button onClick={del} className='bg-blue-500 text-black w-[18rem] p-1 m-2 rounded-lg text-xl font-semibold hover:bg-blue-400'>Owner of this book ?Remove it</button> : <></>}
-        <button className='bg-blue-500 text-black w-[18rem] p-1 rounded-lg text-xl font-semibold hover:bg-blue-400' onClick={place}>Place Order</button>
+          {firebase.user.uid === bookdata.userID ? <button onClick={del} className='bg-blue-500 text-black w-[18rem] p-1 m-2 rounded-lg text-xl font-semibold hover:bg-blue-400'>Owner of this book ?Remove it</button> : <></>}
+          <button className='bg-blue-500 text-black w-[18rem] p-1 rounded-lg text-xl font-semibold hover:bg-blue-400' onClick={place}>Place Order</button>
         </div>
         <ToastContainer />
+        <div className='w-[80vw] h-[20vh] shadow-sm z-10 flex-col flex justify-center bg-slate-300 items-center'>
+          <input type="text" placeholder='Read it?? wanna  Write a review for others!! ' className='w-[60vw] h-[1rem] p-3 rounded-md' />
+          <button className='bg-red-400 text-white w-[6rem] h-[2rem] rounded-lg m-2 '>Add review</button>
+        </div>
       </div>
     </div>
   )

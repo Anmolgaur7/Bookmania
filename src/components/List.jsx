@@ -56,7 +56,6 @@ function List() {
         <input type="file" name="file" placeholder='enter coverpic' onChange={(e) => { setcoverpic(e.target.files[0]) }} className=' w-[18rem] p-1 m-2 md:w-[30rem]' />
 
         <button className='text-md bg-yellow-400 font-semibold p-1 rounded-lg' >Add Book</button>
-
       </form>
       <ToastContainer />
     </div>

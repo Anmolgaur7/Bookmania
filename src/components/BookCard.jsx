@@ -20,15 +20,15 @@ export default function BookCard(props) {
     }))
   })
   return (
-    <div>
-      <div className="max-w-sm m-4 bg-gray-800 border border-gray-200 rounded-lg shadow  dark:bg-gray-800 dark:border-gray-700">
+    <div onClick={(e) =>navigate(`${props.link}`)}  >
+      <div className="max-w-sm m-4 bg-gray-800 border border-gray-200 rounded-lg shadow   dark:bg-gray-800 dark:border-gray-700" >
         <img className="rounded-t-lg w-screen h-[40vh] " src={url} alt="SOme error occured" />
         <div className="p-5">
           <h5 className="mb-2 text-2xl font-bold tracking-tight text-white dark:text-white">{props.name}</h5>
           <p className="mb-3 text-xl font font-semibold text-white">₨ {props.price}</p>
           <button className="inline-flex items-center px-3 py-2 text-lg font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onClick={(e) =>
             navigate(`${props.link}`)}>
-            Order
+            {props.button}
           </button>
         </div>
       </div>

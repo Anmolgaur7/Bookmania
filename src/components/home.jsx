@@ -17,7 +17,7 @@ function Home() {
     return (
       <div className='flex flex-wrap p-12 justify-center items-center '>
         {
-          books.map(book => <Bookcard link={`book/${book.id}`} key={book.id} id={book.id} {...book.data()} />)
+          books.map(book => <Bookcard button="Order" link={`book/${book.id}`} key={book.id} id={book.id} {...book.data()} />)
         }
       </div>
     )

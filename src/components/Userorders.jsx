@@ -23,7 +23,7 @@ function Userorders() {
     <div>
       <div className='flex flex-wrap'>
         {
-          books.map((book) => (<Bookcard link={`/book/userorders/${book.id}`} key={book.id} id={book.id} {...book.data()} />))
+          books.map((book) => (<Bookcard button="View Orders" link={`/book/userorders/${book.id}`} key={book.id} id={book.id} {...book.data()} />))
         }
       </div>
     </div>
