@@ -46,7 +46,7 @@ function Home() {
           <Slide triggerOnce={true}>
             <h1 className='font-mono  text-xl  font-semibold w-[80vw] max-h-fit p-3 bg-amber-100 md:w-[40vw] '> Are you a book enthusiast looking for a place to share the stories you've already devoured and make room for new ones? Or perhaps you're an avid reader on the hunt for affordable, well-loved books to add to your collection? Look no further – BookMania is here to bring book lovers together in a literary paradise!
               <br />
-              At BookMania, we understand the magic of a well-worn book and the joy of passing it on to a fellow bookworm. Our platform is dedicated to connecting passionate readers like you, where you can list your gently used books for sale and discover hidden literary gems waiting to be explored.
+              At BookMania, we understand the magic of a well-worn book and the joy of passing it on to a fellow bookworm. Our platform is dedicated to connecting passionate readers like you, where you can list your  gently used books for sale and discover hidden literary gems waiting to be explored.
             </h1>
           </Slide>
         </div>
