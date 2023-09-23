@@ -69,11 +69,32 @@ export const FirebaseProvider = (props) => {
         });
         return res
     }
+    const addreview= async(bookid,review)=>{
+    const ref = collection(firestore, "books", `${bookid}`, "reviews")    
+    const res = await addDoc(ref, {
+        userID: user.uid,
+        userEmail: user.email,
+        displayname: user.displayName,
+        Review:String(review)
+    });
+    return res
+    }
+    const getreview= async(bookid)=>{
+        const ref = collection(firestore, "books", `${bookid}`, "reviews")    
+        const res = await getDocs(ref);
+        return res
+        }
+
     const delbook = async(id)=>{
     const cityref=doc(firestore,'books',id)
     const res=await deleteDoc(cityref)
       return res
     }
+    const delreview = async(bookid,id)=>{
+        const cityref=doc(firestore,'books',`${bookid}`,"reviews",id)
+        const res=await deleteDoc(cityref)
+          return res
+        }
     const getorders = async (bookID) => {
         const collectionref = collection(firestore, "books", bookID, "orders")
         const res = await getDocs(collectionref)
@@ -104,7 +125,7 @@ export const FirebaseProvider = (props) => {
         return res
     }
     console.log(user);
-    return <FirebaseContext.Provider value={{ SignupWithEmail, getorders, fetchmyorders, SigninWithEmail, placeorder, signinwithgoogle, addnewlisting, signout,delbook ,signinwithfb, bookbyid, user, isloggedin, getbooks, getimageurl }}>
+    return <FirebaseContext.Provider value={{ SignupWithEmail,addreview, getorders,delreview ,fetchmyorders, SigninWithEmail, placeorder, signinwithgoogle, addnewlisting, signout,delbook ,signinwithfb, bookbyid, user, isloggedin,getreview, getbooks, getimageurl }}>
         {props.children}
     </FirebaseContext.Provider>
 
